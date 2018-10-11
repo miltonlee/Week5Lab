@@ -13,16 +13,27 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Shopping List</h1>
-        <div>${welcome}</div>
-        <h2>List</h2>
-        Add item:<input type="text">
-        <input type="button" value="Add">
-          <c:forEach var="account" items="${shopitems}">
-                <tr>
-                    <td></td>
-              
-                </tr>
-            </c:forEach> 
+        <h1>Shopping List</h1><br>
+
+        <h3>Hello, ${username} <a href="?action=logout">Logout</a></h3><br>
+
+        <h3>List</h3>
+        <form  action="" method="POST">
+            <input type="text" name="item">
+            <input type="hidden" name="action" value="add" >
+            <input type="submit" value="Add" >
+        </form>
+
+         <c:if test="${shopitem != null}">
+        <form action="" method="POST">
+            <ul>
+                <c:forEach var="item" items="${shopitem}" >
+                    <li><input type="radio" name="radioButton" value="${item}" >${item}</li><br>
+                </c:forEach>
+            </ul>
+            <input type="hidden" name="action" value="delete" >
+            <input type="submit" value="Delete" >
+        </form>
+    </c:if>
     </body>
 </html>
